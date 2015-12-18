@@ -62,7 +62,11 @@ class PID:
         self.output = 0.0
 
     def update(self, feedback_value):
-        """Calculates PID value for given reference input and feedback
+        """Calculates PID value for given reference feedback
+
+        .. math::
+            u(t) = K_p e(t) + K_i \int_{0}^{t} e(t)dt + K_d {de}/{dt}
+
         """
         error = self.SetPoint - feedback_value
 
@@ -90,15 +94,15 @@ class PID:
             self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm)
 
     def setKp(self, proportional_gain):
-        """Determines how aggressively the PID reacts to the current amount of error with setting Proportional Gain"""
+        """Determines how aggressively the PID reacts to the current error with setting Proportional Gain"""
         self.Kp = proportional_gain
 
     def setKi(self, integral_gain):
-        """Determines how aggressively the PID reacts to the current amount of error with setting Integral Gain"""
+        """Determines how aggressively the PID reacts to the current error with setting Integral Gain"""
         self.Ki = integral_gain
 
     def setKd(self, derivative_gain):
-        """Determines how aggressively the PID reacts to the current amount of error with setting Derivative Gain"""
+        """Determines how aggressively the PID reacts to the current error with setting Derivative Gain"""
         self.Kd = derivative_gain
 
     def setWindup(self, windup):
@@ -115,6 +119,6 @@ class PID:
 
     def setSampleTime(self, sample_time):
         """PID that should be updated at a regular interval.
-        Based on a pre-determined Sample Time, the PID decides if it should compute or return immediately.
+        Based on a pre-determined sampe time, the PID decides if it should compute or return immediately.
         """
         self.sample_time = sample_time
