@@ -34,7 +34,7 @@ class PID:
     """PID Controller
     """
 
-    def __init__(self, P=2.0, I=0.0, D=1.0):
+    def __init__(self, P=0.2, I=0.0, D=0.0):
 
         self.Kp = P
         self.Ki = I
