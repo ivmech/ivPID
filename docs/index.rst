@@ -3,8 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to ivPID's documentation!
+ivPID Python PID Controller
 =================================
+
+.. figure:: images/pid_control.png
+   :align:   center
+
+   PID Controller
+
 
 .. toctree::
    :maxdepth: 2
