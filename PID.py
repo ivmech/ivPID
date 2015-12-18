@@ -70,7 +70,7 @@ class PID:
         .. figure:: images/pid_1.png
            :align:   center
 
-           Test PID with Kp=1.2, Ki=0.001, Kd=1 (test_pid.py)
+           Test PID with Kp=1.2, Ki=1, Kd=0.001 (test_pid.py)
 
         """
         error = self.SetPoint - feedback_value

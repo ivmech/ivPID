@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import spline
 
-def test_pid(P = 0.2, D= 0.0, I = 0.0, L=100):
+def test_pid(P = 0.2,  I = 0.0, D= 0.0, L=100):
     """Self-test PID class
 
     .. note::
@@ -90,5 +90,5 @@ def test_pid(P = 0.2, D= 0.0, I = 0.0, L=100):
     plt.show()
 
 if __name__ == "__main__":
-    test_pid(1.2, 0.001, 1, L=50)
+    test_pid(1.2, 1, 0.001, L=50)
 #    test_pid(0.8, L=50)
