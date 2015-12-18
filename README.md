@@ -1,2 +1,2 @@
-# ivpid
+# ivPID
 Python PID Controller
