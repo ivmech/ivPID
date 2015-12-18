@@ -40,7 +40,7 @@ class PID:
         self.Ki = I
         self.Kd = D
 
-        self.sample_time = 0.01
+        self.sample_time = 0.00
         self.current_time = time.time()
         self.last_time = self.current_time
 
@@ -50,9 +50,9 @@ class PID:
         """Clears PID computations and coefficients"""
         self.SetPoint = 0.0
 
-        self.Cp = 0.0
-        self.Ci = 0.0
-        self.Cd = 0.0
+        self.PTerm = 0.0
+        self.ITerm = 0.0
+        self.DTerm = 0.0
         self.last_error = 0.0
 
         # Windup Guard
@@ -71,39 +71,50 @@ class PID:
         delta_error = error - self.last_error
 
         if (delta_time >= self.sample_time):
-            self.Cp = self.Kp * error
-            self.Ci += error * delta_time
+            self.PTerm = self.Kp * error
+            self.ITerm += error * delta_time
 
-            if (self.Ci < -self.windup_guard):
-                self.Ci = -self.windup_guard
-            elif (self.Ci > self.windup_guard):
-                self.Ci = self.windup_guard
+            if (self.ITerm < -self.windup_guard):
+                self.ITerm = -self.windup_guard
+            elif (self.ITerm > self.windup_guard):
+                self.ITerm = self.windup_guard
 
-            self.Cd = 0.0
+            self.DTerm = 0.0
             if delta_time > 0:
-                self.Cd = delta_error / delta_time
+                self.DTerm = delta_error / delta_time
 
+            # Remember last time and last error for next calculation
             self.last_time = self.current_time
             self.last_error = error
 
-            self.output = self.Cp + (self.Ki * self.Ci) + (self.Kd * self.Cd)
+            self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm)
 
-    def setKp(self, P):
-        """Sets Proportional Coefficient"""
-        self.Kp = P
+    def setKp(self, proportional_gain):
+        """Determines how aggressively the PID reacts to the current amount of error with setting Proportional Gain"""
+        self.Kp = proportional_gain
 
-    def setKi(self, I):
-        """Sets Integral Coefficient"""
-        self.Ki = I
+    def setKi(self, integral_gain):
+        """Determines how aggressively the PID reacts to the current amount of error with setting Integral Gain"""
+        self.Ki = integral_gain
 
-    def setKd(self, D):
-        """Sets Derivative Coefficient"""
-        self.Kd = D
+    def setKd(self, derivative_gain):
+        """Determines how aggressively the PID reacts to the current amount of error with setting Derivative Gain"""
+        self.Kd = derivative_gain
 
-    def setWindup(self, W):
-        """Sets Windup Guard Limit"""
-        self.windup_guard = W
+    def setWindup(self, windup):
+        """Integral windup, also known as integrator windup or reset windup,
+        refers to the situation in a PID feedback controller where
+        a large change in setpoint occurs (say a positive change)
+        and the integral terms accumulates a significant error
+        during the rise (windup), thus overshooting and continuing
+        to increase as this accumulated error is unwound
+        (offset by errors in the other direction).
+        The specific problem is the excess overshooting.
+        """
+        self.windup_guard = windup
 
     def setSampleTime(self, sample_time):
-        """Sets PID Computation Time Interval"""
+        """PID that should be updated at a regular interval.
+        Based on a pre-determined Sample Time, the PID decides if it should compute or return immediately.
+        """
         self.sample_time = sample_time
