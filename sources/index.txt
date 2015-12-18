@@ -20,7 +20,6 @@ ivPID Ivmech Python PID Controller
 .. autoclass:: PID
     :members:
 
-
 Indices and tables
 ==================
 
