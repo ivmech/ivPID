@@ -33,6 +33,20 @@ import numpy as np
 from scipy.interpolate import spline
 
 def test_pid(P = 0.2, D= 0.0, I = 0.0, L=100):
+    """Self-test PID class
+
+    .. note::
+        ...
+        for i in range(1, END):
+            pid.update(feedback)
+            output = pid.output
+            if pid.SetPoint > 0:
+                feedback += (output - (1/i))
+            if i>9:
+                pid.SetPoint = 1
+            time.sleep(0.02)
+        ---
+    """
     pid = PID.PID(P, I, D)
 
     pid.SetPoint=0.0
