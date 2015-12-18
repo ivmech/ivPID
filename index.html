@@ -47,10 +47,8 @@
 <ul class="simple">
 </ul>
 </div>
-<span class="target" id="module-PID"></span><p>Python PID Controller
-Simple implementation of a Proportional-Integral-Derivative (PID) Controller.
-PID controller gives output value for error between desired reference input and measurement feedback to minimize error value.
-More information: <a class="reference external" href="http://en.wikipedia.org/wiki/PID_controller">http://en.wikipedia.org/wiki/PID_controller</a></p>
+<span class="target" id="module-PID"></span><p>Ivmech PID Controller is simple implementation of a Proportional-Integral-Derivative (PID) Controller at Python Programming Language.
+More information about PID Controller: <a class="reference external" href="http://en.wikipedia.org/wiki/PID_controller">http://en.wikipedia.org/wiki/PID_controller</a></p>
 <dl class="class">
 <dt id="PID.PID">
 <em class="property">class </em><code class="descclassname">PID.</code><code class="descname">PID</code><span class="sig-paren">(</span><em>P=2.0</em>, <em>I=0.0</em>, <em>D=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#PID.PID" title="Permalink to this definition">¶</a></dt>
@@ -63,32 +61,40 @@ More information: <a class="reference external" href="http://en.wikipedia.org/wi
 
 <dl class="method">
 <dt id="PID.PID.setKd">
-<code class="descname">setKd</code><span class="sig-paren">(</span><em>D</em><span class="sig-paren">)</span><a class="headerlink" href="#PID.PID.setKd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets Derivative Coefficient</p>
+<code class="descname">setKd</code><span class="sig-paren">(</span><em>derivative_gain</em><span class="sig-paren">)</span><a class="headerlink" href="#PID.PID.setKd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines how aggressively the PID reacts to the current amount of error with setting Derivative Gain</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="PID.PID.setKi">
-<code class="descname">setKi</code><span class="sig-paren">(</span><em>I</em><span class="sig-paren">)</span><a class="headerlink" href="#PID.PID.setKi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets Integral Coefficient</p>
+<code class="descname">setKi</code><span class="sig-paren">(</span><em>integral_gain</em><span class="sig-paren">)</span><a class="headerlink" href="#PID.PID.setKi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines how aggressively the PID reacts to the current amount of error with setting Integral Gain</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="PID.PID.setKp">
-<code class="descname">setKp</code><span class="sig-paren">(</span><em>P</em><span class="sig-paren">)</span><a class="headerlink" href="#PID.PID.setKp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets Proportional Coefficient</p>
+<code class="descname">setKp</code><span class="sig-paren">(</span><em>proportional_gain</em><span class="sig-paren">)</span><a class="headerlink" href="#PID.PID.setKp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines how aggressively the PID reacts to the current amount of error with setting Proportional Gain</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="PID.PID.setSampleTime">
 <code class="descname">setSampleTime</code><span class="sig-paren">(</span><em>sample_time</em><span class="sig-paren">)</span><a class="headerlink" href="#PID.PID.setSampleTime" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets PID Computation Time Interval</p>
+<dd><p>PID that should be updated at a regular interval.
+Based on a pre-determined Sample Time, the PID decides if it should compute or return immediately.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="PID.PID.setWindup">
-<code class="descname">setWindup</code><span class="sig-paren">(</span><em>W</em><span class="sig-paren">)</span><a class="headerlink" href="#PID.PID.setWindup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets Windup Guard Limit</p>
+<code class="descname">setWindup</code><span class="sig-paren">(</span><em>windup</em><span class="sig-paren">)</span><a class="headerlink" href="#PID.PID.setWindup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Integral windup, also known as integrator windup or reset windup,
+refers to the situation in a PID feedback controller where
+a large change in setpoint occurs (say a positive change)
+and the integral terms accumulates a significant error
+during the rise (windup), thus overshooting and continuing
+to increase as this accumulated error is unwound
+(offset by errors in the other direction).
+The specific problem is the excess overshooting.</p>
 </dd></dl>
 
 <dl class="method">
