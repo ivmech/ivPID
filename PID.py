@@ -16,26 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#title           :PID.py
-#description     :python pid controller
-#author          :Caner Durmusoglu
-#date            :20151218
-#version         :0.1
-#notes           :
-#python_version  :2.7
-#==============================================================================
-# Python PID Controller
-# Simple implementation of a Proportional-Integral-Derivative (PID) Controller.
-# PID controller gives output value for error between desired reference input and measurement feedback to minimize error value.
-# More information: http://en.wikipedia.org/wiki/PID_controller
-#
+# title           :PID.py
+# description     :python pid controller
+# author          :Caner Durmusoglu
+# date            :20151218
+# version         :0.1
+# notes           :
+# python_version  :2.7
+# ==============================================================================
 
+"""Python PID Controller
+Simple implementation of a Proportional-Integral-Derivative (PID) Controller.
+PID controller gives output value for error between desired reference input and measurement feedback to minimize error value.
+More information: http://en.wikipedia.org/wiki/PID_controller
+"""
 import time
 
 class PID:
+    """PID Controller
     """
-	PID Controller
-	"""
 
     def __init__(self, P=2.0, I=0.0, D=1.0):
 
@@ -50,6 +49,7 @@ class PID:
         self.clear()
 
     def clear(self):
+        """Clears PID computations and coefficients"""
         self.SetPoint = 0.0
 
         self.Cp = 0.0
@@ -64,9 +64,8 @@ class PID:
         self.output = 0.0
 
     def update(self, feedback_value):
+        """Calculates PID value for given reference input and feedback
         """
-		Calculate PID output value for given reference input and feedback
-		"""
         error = self.SetPoint - feedback_value
 
         self.current_time = time.time()
@@ -92,16 +91,21 @@ class PID:
             self.output = self.Cp + (self.Ki * self.Ci) + (self.Kd * self.Cd)
 
     def setKp(self, P):
+        """Sets Proportional Coefficient"""
         self.Kp = P
 
     def setKi(self, I):
+        """Sets Integral Coefficient"""
         self.Ki = I
 
     def setKd(self, D):
+        """Sets Derivative Coefficient"""
         self.Kd = D
 
     def setWindup(self, W):
+        """Sets Windup Guard Limit"""
         self.windup_guard = W
 
     def setSampleTime(self, sample_time):
+        """Sets PID Computation Time Interval"""
         self.sample_time = sample_time
