@@ -25,10 +25,8 @@
 # python_version  :2.7
 # ==============================================================================
 
-"""Python PID Controller
-Simple implementation of a Proportional-Integral-Derivative (PID) Controller.
-PID controller gives output value for error between desired reference input and measurement feedback to minimize error value.
-More information: http://en.wikipedia.org/wiki/PID_controller
+"""Ivmech PID Controller is simple implementation of a Proportional-Integral-Derivative (PID) Controller at Python Programming Language.
+More information about PID Controller: http://en.wikipedia.org/wiki/PID_controller
 """
 import time
 
