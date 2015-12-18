@@ -67,6 +67,11 @@ class PID:
         .. math::
             u(t) = K_p e(t) + K_i \int_{0}^{t} e(t)dt + K_d {de}/{dt}
 
+        .. figure:: images/pid_1.png
+           :align:   center
+
+           Test PID with Kp=1.2, Ki=0.001, Kd=1 (test_pid.py)
+
         """
         error = self.SetPoint - feedback_value
 
