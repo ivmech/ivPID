@@ -2,7 +2,7 @@
 
 http://ivmech.github.io/ivPID
 
-Ivmech PID Controller is simple implementation of a Proportional-Integral-Derivative (PID) Controller at Python Programming Language.
+Ivmech PID Controller is simple implementation of a Proportional-Integral-Derivative (PID) Controller in the Python Programming Language.
 
 ![alt pid](https://raw.githubusercontent.com/ivmech/ivPID/master/docs/images/pid_control.png)
 
