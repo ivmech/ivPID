@@ -30,7 +30,8 @@ import PID
 import time
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.interpolate import spline
+#from scipy.interpolate import spline
+from scipy.interpolate import BSpline, make_interp_spline #  Switched to BSpline
 
 def test_pid(P = 0.2,  I = 0.0, D= 0.0, L=100):
     """Self-test PID class
@@ -74,7 +75,11 @@ def test_pid(P = 0.2,  I = 0.0, D= 0.0, L=100):
 
     time_sm = np.array(time_list)
     time_smooth = np.linspace(time_sm.min(), time_sm.max(), 300)
-    feedback_smooth = spline(time_list, feedback_list, time_smooth)
+
+    # feedback_smooth = spline(time_list, feedback_list, time_smooth)
+    # Using make_interp_spline to create BSpline
+	helper_x3 = make_interp_spline(time_list, feedback_list)
+    feedback_smooth = helper_x3(time_smooth)
 
     plt.plot(time_smooth, feedback_smooth)
     plt.plot(time_list, setpoint_list)
