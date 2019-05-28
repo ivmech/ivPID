@@ -34,14 +34,14 @@ class PID:
     """PID Controller
     """
 
-    def __init__(self, P=0.2, I=0.0, D=0.0):
+    def __init__(self, P=0.2, I=0.0, D=0.0, current_time=None):
 
         self.Kp = P
         self.Ki = I
         self.Kd = D
 
         self.sample_time = 0.00
-        self.current_time = time.time()
+        self.current_time = current_time if current_time is not None else time.time()
         self.last_time = self.current_time
 
         self.clear()
@@ -61,7 +61,7 @@ class PID:
 
         self.output = 0.0
 
-    def update(self, feedback_value):
+    def update(self, feedback_value, current_time=None):
         """Calculates PID value for given reference feedback
 
         .. math::
@@ -75,7 +75,7 @@ class PID:
         """
         error = self.SetPoint - feedback_value
 
-        self.current_time = time.time()
+        self.current_time = current_time if current_time is not None else time.time()
         delta_time = self.current_time - self.last_time
         delta_error = error - self.last_error
 
